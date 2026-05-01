@@ -1,0 +1,23 @@
+{
+  "your_email": "niu@qq.com",
+  "auth_code": "",
+  "imap_server": "imap.qq.com",
+  "imap_port": 993,
+  "smtp_server": "smtp.qq.com",
+  "smtp_port": 465,
+  "check_interval": 60,
+  "agent_email": "niu-research@qq.com",
+  "send_subject": "research Agent mail",
+  "receive_subject": "research Agent response",
+  "attachment_dir": "./downloads",
+  "agents": [
+    {
+      "id": "agent_1",
+      "name": "163的朋友",
+      "email": "niuguangfeng2026@163.com",
+      "send_subject": "hello",
+      "receive_subject": "hello"
+    }
+  ],
+  "max_fetch_count": "100"
+}
