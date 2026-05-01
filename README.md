@@ -52,12 +52,35 @@
    客户端，向代理发邮件需要邮箱，为了区分邮件，设置一个发送主题和一个接收主题。
 -客户端会收取代理的邮件，但客户端不会收取所有邮件。只有满足发送邮箱+接收主题两个条件，客户端才会收取，并显示在界面上。   
 
+python main.py
+
 ### 网关
 一个网关可以与多个Agent沟通，区分使用：邮箱+接收主题。
 运行 `gateway_ui.py` 打开配置界面。
 - 配置邮箱服务器（SMTP/IMAP 地址、端口、授权码）
 - 或编辑 `gateway_config.json`
 网关接收邮件后，根据邮件地址+tile符合，就送给相应的AI Agent。
+
+python gateway_ui.py
+
+pyinstaller --noconsole --onefile --name "ResearchAgent" --icon=app_icon.ico main.py
+pyinstaller --noconsole --onefile --name "Gateway" --icon=app_icon.ico gateway_ui.py
+
+    授权码经简单加密存储于本地 SQLite 数据库
+
+    所有数据仅存在于本地，模型通过 OpenClaw 本地运行
+
+    邮件服务器说明：邮件传输经过第三方（如腾讯、网易）。请使用专用邮箱和独立授权码，敏感内容请评估合规性
+
+
+特性	说明
+离线可控	除邮件服务器外无外部依赖，数据不外泄
+多代理扩展	通过邮件主题灵活路由，轻松扩展代理数量
+高可定制	界面、规则、渲染均可配置或修改
+错误降级	公式渲染失败自动切换 Unicode 文本
+跨平台	Python 3.7+ 与 PyQt5 支持 Windows/Linux/macOS
+持久历史	每个代理独立数据库，重启不丢失
+
 
 ### 安全
 邮箱地址确保了一定的安全性。
